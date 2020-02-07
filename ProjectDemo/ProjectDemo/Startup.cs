@@ -1,11 +1,13 @@
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ProjectDemo.Application;
 using ProjectDemo.Persistance;
 using System;
+using System.Reflection;
 
 namespace ProjectDemo
 {
@@ -22,6 +24,8 @@ namespace ProjectDemo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddPersistance();
+
+            services.AddApplication();
 
             services.AddControllers();
         }

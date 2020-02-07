@@ -10,7 +10,7 @@ namespace ProjectDemo.Persistance
         public static IServiceCollection AddPersistance(this IServiceCollection services)
         {
             services.AddDbContext<ProjectDemoDbContext>(options => options.UseInMemoryDatabase(Guid.NewGuid().ToString()));
-
+            services.AddScoped<ProjectDemoDbContext>();
             return services;
         }
     }
