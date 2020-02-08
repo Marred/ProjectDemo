@@ -28,7 +28,8 @@ namespace ProjectDemo
 
             services.AddApplication();
 
-            services.AddControllers();
+            services.AddControllers()
+                .AddValidation();
 
             services.AddSwaggerGen(c =>
             {

@@ -3,7 +3,7 @@ using ProjectDemo.Persistance;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ProjectDemo.Application.Products.Queries.UpdateProduct
+namespace ProjectDemo.Application.Products.Commands.UpdateProduct
 {
     public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand, Unit>
     {
@@ -17,11 +17,11 @@ namespace ProjectDemo.Application.Products.Queries.UpdateProduct
         {
             var product = await _context.Products.FindAsync(request.Id);
 
-            if(!string.IsNullOrEmpty(request.Name))
+            if (!string.IsNullOrEmpty(request.Name))
             {
                 product.SetName(request.Name);
             }
-            if(request.Price != default)
+            if (request.Price != default)
             {
                 product.SetPrice(request.Price);
             }

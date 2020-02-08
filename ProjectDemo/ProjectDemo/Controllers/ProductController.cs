@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using ProjectDemo.Application.Products.Commands.CreateProduct;
 using ProjectDemo.Application.Products.Commands.DeleteProduct;
+using ProjectDemo.Application.Products.Commands.UpdateProduct;
 using ProjectDemo.Application.Products.Queries.GetProduct;
 using ProjectDemo.Application.Products.Queries.GetProductsPage;
-using ProjectDemo.Application.Products.Queries.UpdateProduct;
 using System.Threading.Tasks;
 
 namespace ProjectDemo.WebAPI.Controllers
