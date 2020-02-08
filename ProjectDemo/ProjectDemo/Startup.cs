@@ -7,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using ProjectDemo.Application;
 using ProjectDemo.Persistance;
+using ProjectDemo.WebAPI.Middlewares;
 using System;
 using System.Reflection;
 
@@ -51,6 +52,8 @@ namespace ProjectDemo
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseFluentValidationExceptionHandler();
 
             app.UseHttpsRedirection();
 
