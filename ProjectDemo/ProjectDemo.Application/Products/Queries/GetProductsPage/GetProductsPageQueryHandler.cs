@@ -19,8 +19,10 @@ namespace ProjectDemo.Application.Products.Queries.GetProductsPage
         }
         public async Task<ProductsPageDto> Handle(GetProductsPageQuery request, CancellationToken cancellationToken)
         {
+            var elementsToSkip = request.PageSize * (request.PageNumber - 1);
+
             var products = await _conext.Products
-                .Skip(request.PageSize * request.PageNumber - 1)
+                .Skip(elementsToSkip)
                 .Take(request.PageSize)
                 .Select(p => new ProductDto
                 {
