@@ -1,8 +1,9 @@
 ﻿using MediatR;
-using ProjectDemo.Persistance;
+using Microsoft.EntityFrameworkCore;
+using ProjectDemo.Application.Exceptions;
+using ProjectDemo.Domain.Products;
+using ProjectDemo.Persistence;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -19,7 +20,10 @@ namespace ProjectDemo.Application.Products.Commands.DeleteProduct
 
         public async Task<Unit> Handle(DeleteProductCommand request, CancellationToken cancellationToken)
         {
-            var product = await _context.Products.FindAsync(request.Id);
+            var product = await _context.Products.SingleOrDefaultAsync(p => p.Id.Equals(Guid.Parse(request.Id)));
+
+            if (product == default)
+                throw new EntityNotFoundException($"Could not find product with id {request.Id}.");
 
             _context.Products.Remove(product);
 

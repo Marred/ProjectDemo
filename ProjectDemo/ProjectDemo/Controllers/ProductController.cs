@@ -39,9 +39,10 @@ namespace ProjectDemo.WebAPI.Controllers
             return new CreatedAtRouteResult("", new { Id = id });
         }
 
-        [HttpPut]
-        public async Task<ActionResult> UpdateProductAstync(UpdateProductCommand command)
+        [HttpPut("{id}")]
+        public async Task<ActionResult> UpdateProductAstync(UpdateProductCommand command, string id)
         {
+            command.Id = id;
             await _mediator.Send(command);
 
             return NoContent();

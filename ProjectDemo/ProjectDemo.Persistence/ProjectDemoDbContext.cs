@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ProjectDemo.Persistance
+namespace ProjectDemo.Persistence
 {
     public class ProjectDemoDbContext : DbContext
     {

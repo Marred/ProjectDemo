@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
-using ProjectDemo.Persistance;
+using ProjectDemo.Application.Exceptions;
+using ProjectDemo.Domain.Products;
+using ProjectDemo.Persistence;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -18,7 +18,10 @@ namespace ProjectDemo.Application.Products.Queries.GetProduct
         }
         public async Task<ProductDto> Handle(GetProductQuery request, CancellationToken cancellationToken)
         {
-            var product = await _context.Products.SingleAsync(p => p.Id.Equals(Guid.Parse(request.Id)));
+            var product = await _context.Products.SingleOrDefaultAsync(p => p.Id.Equals(Guid.Parse(request.Id)));
+
+            if (product == default)
+                throw new EntityNotFoundException($"Could not find product with id {request.Id}.");
 
             return new ProductDto
             {

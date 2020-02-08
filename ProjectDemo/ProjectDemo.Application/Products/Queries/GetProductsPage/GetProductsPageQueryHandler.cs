@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
-using ProjectDemo.Persistance;
+using ProjectDemo.Persistence;
 using System;
 using System.Collections.Generic;
 using System.Linq;

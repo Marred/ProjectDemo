@@ -6,8 +6,8 @@ namespace ProjectDemo.Application.Products.Commands.CreateProduct
     {
         public CreateProductCommandValidator()
         {
-            RuleFor(c => c.Name).MaximumLength(100).NotEmpty();
-            RuleFor(c => c.Price).GreaterThan(0.00M);
+            RuleFor(c => c.Name).NotEmpty().MaximumLength(100);
+            RuleFor(c => c.Price).GreaterThanOrEqualTo(0.00M);
         }
     }
 }

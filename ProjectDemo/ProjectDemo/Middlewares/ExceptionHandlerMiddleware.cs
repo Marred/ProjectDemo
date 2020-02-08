@@ -2,17 +2,18 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using ProjectDemo.Application.Exceptions;
 using System;
 using System.Net;
 using System.Threading.Tasks;
 
 namespace ProjectDemo.WebAPI.Middlewares
 {
-    public class FluentValidationExceptionHandlerMiddleware
+    public class ExceptionHandlerMiddleware
     {
         private readonly RequestDelegate _next;
 
-        public FluentValidationExceptionHandlerMiddleware(RequestDelegate next)
+        public ExceptionHandlerMiddleware(RequestDelegate next)
         {
             _next = next;
         }
@@ -27,11 +28,28 @@ namespace ProjectDemo.WebAPI.Middlewares
             {
                 await HandleValidationException(context, ex);
             }
+            catch (AggregateException ex)
+            {
+                if (ex.InnerException is EntityNotFoundException)
+                    await HandleNotFoundException(context, ex.InnerException as EntityNotFoundException);
+                throw ex;
+            }
+        }
+
+        private Task HandleNotFoundException(HttpContext context, EntityNotFoundException ex)
+        {
+            var code = HttpStatusCode.NotFound;
+            var result = JsonConvert.SerializeObject(new { ex.Message });
+
+            context.Response.ContentType = "application/json";
+            context.Response.StatusCode = (int)code;
+
+            return context.Response.WriteAsync(result);
         }
 
         private Task HandleValidationException(HttpContext context, ValidationException exception)
         {
-            var code = HttpStatusCode.UnprocessableEntity;
+            var code = HttpStatusCode.BadRequest;
             var result = JsonConvert.SerializeObject(exception.Errors);
 
             context.Response.ContentType = "application/json";
@@ -43,9 +61,9 @@ namespace ProjectDemo.WebAPI.Middlewares
 
     public static class CustomExceptionHandlerMiddlewareExtensions
     {
-        public static IApplicationBuilder UseFluentValidationExceptionHandler(this IApplicationBuilder builder)
+        public static IApplicationBuilder UseCustomExceptionHandler(this IApplicationBuilder builder)
         {
-            return builder.UseMiddleware<FluentValidationExceptionHandlerMiddleware>();
+            return builder.UseMiddleware<ExceptionHandlerMiddleware>();
         }
     }
 }

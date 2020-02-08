@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using ProjectDemo.Domain.Products;
-using ProjectDemo.Persistance;
+using ProjectDemo.Persistence;
 using System.Threading;
 using System.Threading.Tasks;
 

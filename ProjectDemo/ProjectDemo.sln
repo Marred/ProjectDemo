@@ -11,9 +11,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{90C37FF8
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectDemo.Domain.UnitTests", "ProjectDemo.Domain.Tests\ProjectDemo.Domain.UnitTests.csproj", "{9B9820D0-E3CC-4B35-A0BF-572C9359DD2E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectDemo.Persistance", "ProjectDemo.Persistance\ProjectDemo.Persistance.csproj", "{2C0D798D-ECD2-4103-8642-159B5D50C3E0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectDemo.Persistence", "ProjectDemo.Persistence\ProjectDemo.Persistence.csproj", "{2C0D798D-ECD2-4103-8642-159B5D50C3E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectDemo.Persistance.IntegrationTests", "ProjectDemo.Persistance.IntegrationTests\ProjectDemo.Persistance.IntegrationTests.csproj", "{68287FC9-DB27-4F12-922F-E0E72C23024B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectDemo.Persistence.IntegrationTests", "ProjectDemo.Persistence.IntegrationTests\ProjectDemo.Persistence.IntegrationTests.csproj", "{68287FC9-DB27-4F12-922F-E0E72C23024B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectDemo.Application", "ProjectDemo.Application\ProjectDemo.Application.csproj", "{542187D8-792D-44AE-85D0-EE359849453B}"
 EndProject

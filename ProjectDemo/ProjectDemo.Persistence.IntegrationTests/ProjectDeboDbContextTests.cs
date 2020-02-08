@@ -4,7 +4,7 @@ using ProjectDemo.Domain.Products;
 using System;
 using System.Threading.Tasks;
 
-namespace ProjectDemo.Persistance.IntegrationTests
+namespace ProjectDemo.Persistence.IntegrationTests
 {
     public class ProjectDemoDbContextTests
     {

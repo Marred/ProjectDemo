@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using ProjectDemo.Application;
-using ProjectDemo.Persistance;
+using ProjectDemo.Persistence;
 using ProjectDemo.WebAPI.Middlewares;
 using System;
 using System.Reflection;
@@ -25,12 +25,11 @@ namespace ProjectDemo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddPersistance();
+            services.AddPersistence();
 
             services.AddApplication();
 
-            services.AddControllers()
-                .AddValidation();
+            services.AddControllers();
 
             services.AddSwaggerGen(c =>
             {
@@ -53,7 +52,7 @@ namespace ProjectDemo
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseFluentValidationExceptionHandler();
+            app.UseCustomExceptionHandler();
 
             app.UseHttpsRedirection();
 
