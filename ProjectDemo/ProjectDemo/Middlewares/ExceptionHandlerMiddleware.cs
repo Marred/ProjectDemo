@@ -32,7 +32,7 @@ namespace ProjectDemo.WebAPI.Middlewares
             {
                 if (ex.InnerException is EntityNotFoundException)
                     await HandleNotFoundException(context, ex.InnerException as EntityNotFoundException);
-                throw ex;
+                else throw;
             }
         }
 
